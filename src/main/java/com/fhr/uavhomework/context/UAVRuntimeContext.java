@@ -9,12 +9,11 @@ import java.util.Map;
 
 /**
  * @author FanHuaran
- * @description 上下文
+ * @description 无人机运行上下文
  * @create 2018-04-05 14:28
  **/
 public class UAVRuntimeContext {
     private static final  UAVRuntimeScene EMPTRY_SCENE = new UAVRuntimeScene(new HashMap<>(),null);
-
 
     private final List<UAVRuntimeScene> uaRuntimeScenes = new ArrayList<>();
 
@@ -45,7 +44,7 @@ public class UAVRuntimeContext {
     }
 
     public UAVRuntimeScene getSceneAtMoment(int moment) {
-        return uaRuntimeScenes.get(moment-1);
+        return uaRuntimeScenes.get(moment);
     }
 
     public UAVehicle getChangeVehicleAtMoment(int moment) {

@@ -4,7 +4,7 @@ import java.util.Objects;
 
 /**
  * @author FanHuaran
- * @description 无人机模型
+ * @description 无人机模型，不可变对象
  * @create 2018-04-05 11:17
  **/
 public class UAVehicle {

@@ -9,13 +9,20 @@ import com.fhr.uavhomework.message.IMessage;
  * @create 2018-04-05 11:31
  **/
 public class InitMessage extends AbstractMessage implements IMessage {
-
+    /**
+     * 初始X坐标
+     */
     private final int initX;
 
+    /**
+     * 初始Y坐标
+     */
     private final int initY;
 
+    /**
+     * 初始Z坐标
+     */
     private final int initZ;
-
 
     public InitMessage(int id, String vehicleId, int initX, int initY, int initZ) {
         super(id, vehicleId);

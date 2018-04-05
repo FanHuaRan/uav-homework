@@ -7,6 +7,11 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
+/**
+ * @author FanHuaran
+ * @description UAV运行时服务单元测试组件，主要包含行为测试、边界值测试和特殊值测试
+ * @create 2018-04-05 15:38
+ **/
 public class UAVRuntimeServiceImplTest {
 
     /**
@@ -28,19 +33,27 @@ public class UAVRuntimeServiceImplTest {
             uavRuntimeService.nextMessage(message);
         }
 
-        assertEquals(uavRuntimeService.outputChangeVehicleAtMomentForStr(2), "plane1 2 3 4 5");
+        assertEquals("plane1 2 2 3 4", uavRuntimeService.outputChangeVehicleForStrAtMoment(2));
         UAVehicle uaVehicle1 = uavRuntimeService.outputChangeVehicleAtMoment(2);
         assertNotNull(uaVehicle1);
-        assertEquals(uaVehicle1.isWrong(), false);
-        assertEquals((int) uaVehicle1.getX(), 3);
-        assertEquals((int) uaVehicle1.getY(), 4);
-        assertEquals((int) uaVehicle1.getZ(), 5);
+        assertEquals(false, uaVehicle1.isWrong());
+        assertEquals(2, (int) uaVehicle1.getX());
+        assertEquals(3, (int) uaVehicle1.getY());
+        assertEquals(4, (int) uaVehicle1.getZ());
 
-        assertEquals(uavRuntimeService.outputChangeVehicleAtMomentForStr(4), "Error: 4");
+        assertEquals("plane1 3 3 4 5", uavRuntimeService.outputChangeVehicleForStrAtMoment(3));
+        UAVehicle uaVehicle11 = uavRuntimeService.outputChangeVehicleAtMoment(3);
+        assertNotNull(uaVehicle11);
+        assertEquals(false, uaVehicle11.isWrong());
+        assertEquals(3, (int) uaVehicle11.getX());
+        assertEquals(4, (int) uaVehicle11.getY());
+        assertEquals(5, (int) uaVehicle11.getZ());
+
+        assertEquals("Error: 4", uavRuntimeService.outputChangeVehicleForStrAtMoment(4));
         UAVehicle uaVehicle2 = uavRuntimeService.outputChangeVehicleAtMoment(4);
-        assertEquals(uaVehicle2.isWrong(), true);
+        assertEquals(true, uaVehicle2.isWrong());
 
-        assertEquals(uavRuntimeService.outputChangeVehicleAtMomentForStr(100), "Cannot find 100");
+        assertEquals("Cannot find 100", uavRuntimeService.outputChangeVehicleForStrAtMoment(100));
         UAVehicle uaVehicle3 = uavRuntimeService.outputChangeVehicleAtMoment(100);
         assertNull(uaVehicle3);
     }
@@ -52,10 +65,10 @@ public class UAVRuntimeServiceImplTest {
     public void boundValueTest() {
         IUAVRuntimeService uavRuntimeService = getUAVRuntimeService();
         uavRuntimeService.nextMessage("plane1 1 1 1");
-        assertEquals(uavRuntimeService.outputChangeVehicleAtMomentForStr(1), "plane1 1 1 1 1");
+        assertEquals("plane1 1 1 1 1", uavRuntimeService.outputChangeVehicleForStrAtMoment(1));
 
         IUAVRuntimeService uavRuntimeService2 = getUAVRuntimeService();
-        assertEquals(uavRuntimeService2.outputChangeVehicleAtMomentForStr(1), "Cannot find 1");
+        assertEquals("Cannot find 1", uavRuntimeService2.outputChangeVehicleForStrAtMoment(1));
     }
 
     /**
@@ -72,15 +85,4 @@ public class UAVRuntimeServiceImplTest {
         return new UAVRuntimeServiceImpl(new UAVRuntimeContext(), new SimpleMessageDecodeStrategy());
     }
 
-//    @Test
-//    public void nextMessage() {
-//    }
-//
-//    @Test
-//    public void outputChangeVehicleAtMoment() {
-//    }
-//
-//    @Test
-//    public void outputChangeVehicleAtMomentForStr() {
-//    }
 }

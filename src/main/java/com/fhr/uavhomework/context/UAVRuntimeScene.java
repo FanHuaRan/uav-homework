@@ -3,17 +3,22 @@ package com.fhr.uavhomework.context;
 import com.fhr.uavhomework.vehicle.UAVehicle;
 
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.Map;
 
 /**
  * @author FanHuaran
- * @description 运行时场景某一命令下，以指令为单元
+ * @description 某一命令后的运行时场景，以命令为单元，不可变对象！
  * @create 2018-04-05 14:29
  **/
 public class UAVRuntimeScene {
+    /**
+     * 当前的无人机运行位置和运行状态
+     */
     private final Map<String, UAVehicle> uaVehicles;
 
+    /**
+     * 当前命令下作用的的编号
+     */
     private final String currentChangeVehicleId;
 
     public UAVRuntimeScene(Map<String, UAVehicle> uaVehicles, String currentChangeVehicleId) {
@@ -33,8 +38,8 @@ public class UAVRuntimeScene {
         return uaVehicles.get(vehicleId);
     }
 
-    public UAVehicle getCurrentChangeVehicle(){
-        return  uaVehicles.get(currentChangeVehicleId);
+    public UAVehicle getCurrentChangeVehicle() {
+        return uaVehicles.get(currentChangeVehicleId);
     }
 
     @Override

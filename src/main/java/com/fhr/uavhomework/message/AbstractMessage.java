@@ -2,7 +2,7 @@ package com.fhr.uavhomework.message;
 
 /**
  * @author FanHuaran
- * @description 消息抽象类
+ * @description 无人机抽象消息
  * @create 2018-04-05 11:25
  **/
 public abstract class AbstractMessage implements IMessage{

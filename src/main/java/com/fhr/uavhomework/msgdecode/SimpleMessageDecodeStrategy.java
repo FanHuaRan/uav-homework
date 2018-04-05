@@ -27,27 +27,32 @@ public class SimpleMessageDecodeStrategy implements IMessageDecodeStrategy {
         if (str == null || str.isEmpty()) {
             return new WrongMessage(msgId, null);
         }
+
         String[] words = str.split(" ");
+
         String vehicleId = words.length > 0 ? words[0] : null;
         if (words.length < INIT_MESSAGE_WORD_COUNT) {
             return new WrongMessage(msgId, vehicleId);
         }
+
         Integer x = IntegerUtils.tryParseInt(words[1]);
         Integer y = IntegerUtils.tryParseInt(words[2]);
         Integer z = IntegerUtils.tryParseInt(words[3]);
+
         if (x == null || y == null || z == null) {
             return new WrongMessage(msgId, vehicleId);
         }
         if (words.length == INIT_MESSAGE_WORD_COUNT) {
             return new InitMessage(msgId, vehicleId, x, y, z);
         } else if (words.length == MOVE_MESSAGE_WORD_COUNT) {
-            Integer mvX = IntegerUtils.tryParseInt(words[1]);
-            Integer mvY = IntegerUtils.tryParseInt(words[2]);
-            Integer mvZ = IntegerUtils.tryParseInt(words[3]);
+            Integer mvX = IntegerUtils.tryParseInt(words[4]);
+            Integer mvY = IntegerUtils.tryParseInt(words[5]);
+            Integer mvZ = IntegerUtils.tryParseInt(words[6]);
             if (mvX != null || mvY != null || mvZ != null) {
                 return new MoveMessage(msgId, vehicleId, mvX, mvY, mvZ, x, y, z);
             }
         }
+
         return new WrongMessage(msgId, vehicleId);
     }
 }

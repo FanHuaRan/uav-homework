@@ -12,14 +12,23 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * @author FanHuaran
- * @description UAV运行时服务
+ * @description 无人机运行时服务，非线程安全
  * @create 2018-04-05 15:38
  **/
 public class UAVRuntimeServiceImpl implements IUAVRuntimeService {
+    /**
+     * 无人机运行时上下文
+     */
     private final UAVRuntimeContext uavRuntimeContext;
 
+    /**
+     * 无人机消息解码器
+     */
     private final IMessageDecodeStrategy messageDecodeStrategy;
 
+    /**
+     * 消息计数器
+     */
     private AtomicInteger messageCount = new AtomicInteger(0);
 
     public UAVRuntimeServiceImpl(UAVRuntimeContext uavRuntimeContext, IMessageDecodeStrategy messageDecodeStrategy) {
@@ -47,7 +56,7 @@ public class UAVRuntimeServiceImpl implements IUAVRuntimeService {
     }
 
     @Override
-    public String outputChangeVehicleAtMomentForStr(int msgId) {
+    public String outputChangeVehicleForStrAtMoment(int msgId) {
         UAVehicle uaVehicle = outputChangeVehicleAtMoment(msgId);
         if (uaVehicle == null) {
             return String.format("Cannot find %d", msgId);
@@ -58,6 +67,12 @@ public class UAVRuntimeServiceImpl implements IUAVRuntimeService {
         return String.format("%s %d %d %d %d", uaVehicle.getId(), msgId, uaVehicle.getX(), uaVehicle.getY(), uaVehicle.getZ());
     }
 
+    /**
+     * 计算下一个无人机的状态
+     * @param lastScene
+     * @param message
+     * @return
+     */
     private UAVehicle getNextVehice(UAVRuntimeScene lastScene, IMessage message) {
         String vehiceId = message.getVehicleId();
         if (message instanceof InitMessage) {
@@ -77,6 +92,12 @@ public class UAVRuntimeServiceImpl implements IUAVRuntimeService {
         return new UAVehicle(vehiceId, null, null, null, true);
     }
 
+    /**
+     * 校验移动消息是否合法
+     * @param lastUAVehilce
+     * @param moveMessage
+     * @return
+     */
     private boolean moveMessageIsLegal(UAVehicle lastUAVehilce, MoveMessage moveMessage) {
         return lastUAVehilce != null &&
                 !lastUAVehilce.isWrong() &&
