@@ -1,5 +1,8 @@
 package com.fhr.uavhomework.message;
 
+import com.fhr.uavhomework.message.AbstractMessage;
+import com.fhr.uavhomework.message.IMessage;
+
 /**
  * @author FanHuaran
  * @description 无人机移动消息
@@ -26,5 +29,29 @@ public class MoveMessage extends AbstractMessage implements IMessage {
         this.lastX = lastX;
         this.lastY = lastY;
         this.lastZ = lastZ;
+    }
+
+    public int getMoveX() {
+        return moveX;
+    }
+
+    public int getMoveY() {
+        return moveY;
+    }
+
+    public int getMoveZ() {
+        return moveZ;
+    }
+
+    public int getLastX() {
+        return lastX;
+    }
+
+    public int getLastY() {
+        return lastY;
+    }
+
+    public int getLastZ() {
+        return lastZ;
     }
 }

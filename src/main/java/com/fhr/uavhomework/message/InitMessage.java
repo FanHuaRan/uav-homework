@@ -1,5 +1,8 @@
 package com.fhr.uavhomework.message;
 
+import com.fhr.uavhomework.message.AbstractMessage;
+import com.fhr.uavhomework.message.IMessage;
+
 /**
  * @author FanHuaran
  * @description 无人机初始化消息
@@ -19,5 +22,17 @@ public class InitMessage extends AbstractMessage implements IMessage {
         this.initX = initX;
         this.initY = initY;
         this.initZ = initZ;
+    }
+
+    public int getInitX() {
+        return initX;
+    }
+
+    public int getInitY() {
+        return initY;
+    }
+
+    public int getInitZ() {
+        return initZ;
     }
 }

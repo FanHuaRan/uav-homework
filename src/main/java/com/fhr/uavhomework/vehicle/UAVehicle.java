@@ -16,22 +16,22 @@ public class UAVehicle {
     /**
      * 无人机X坐标
      */
-    private Integer x;
+    private final Integer x;
 
     /**
      * 无人机Y坐标
      */
-    private Integer y;
+    private final Integer y;
 
     /**
      * 无人机Z坐标
      */
-    private Integer z;
+    private final Integer z;
 
     /**
      * 是否故障
      */
-    private boolean isWrong;
+    private final boolean isWrong;
 
     public UAVehicle(String id, Integer x, Integer y, Integer z, boolean isWrong) {
         this.id = id;
@@ -41,40 +41,24 @@ public class UAVehicle {
         this.isWrong = isWrong;
     }
 
-    public String getId(){
-        return  id;
+    public String getId() {
+        return id;
     }
 
     public Integer getX() {
         return x;
     }
 
-    public void setX(Integer x) {
-        this.x = x;
-    }
-
     public Integer getY() {
         return y;
-    }
-
-    public void setY(Integer y) {
-        this.y = y;
     }
 
     public Integer getZ() {
         return z;
     }
 
-    public void setZ(Integer z) {
-        this.z = z;
-    }
-
     public boolean isWrong() {
         return isWrong;
-    }
-
-    public void setWrong(boolean wrong) {
-        isWrong = wrong;
     }
 
     @Override
