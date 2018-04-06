@@ -1,20 +1,37 @@
 ##  uav-homework ##
 
-MusicStore-spring is a web site and a simple rest webapi for java ee.
+uav-homework is a homework for ThoughtWorks .
 
-###　framework ###
+###　Runtime requirement ###
 
-* Spring4.1
+* java8
 
-* ehcache
+* maven
 
-* Redis
+### How to test,exec or build ? ###
 
-* spring security 3.2
+* you can run the uav_test.bat or use next shell to test the unit case.
+   ```shell
+   mvn test
+   ```
+   next is the examples:
+  ![https://raw.githubusercontent.com/FanHuaRan/display_pictures/master/uav_homework/test.PNG] 
 
-* log4j
+* you can run the uav_exec.bat or use next shell to run command app.
+   ```shell
+   mvn exec:java -Dexec.mainClass="com.fhr.uavhomework.bootstrap.App" -Dexec.classpathScope=runtime
+   ```
+    next is the examples:
+   ![https://raw.githubusercontent.com/FanHuaRan/display_pictures/master/uav_homework/exec.PNG] 
 
-* hibernate 
+* you can run the uav_build.bat or use next shell to build the jar.
+   ```shell
+   mvn package
+   ```
+  
+### design ideas ###
+本工程使用maven构建，在具体的设计实现当中，根据实际情况使用面向对象设计原则和设计模式，力求简单高效但不丧失扩展性。
+本工程核心是版本化和不可变：每个无人机指令都对应一个场景，这个场景下有各个无人机，指令输入导致一个场景到另外一个场景的变迁。
 
 ### licence ###
 
@@ -24,7 +41,7 @@ MusicStore-spring is a web site and a simple rest webapi for java ee.
 ```javascript
   var author = {
     name  : "范华燃",
-    English Name : "Evan"
+    English name : "Evan"
     email : "ranrandemo@gmail.com"
   }
 ```
