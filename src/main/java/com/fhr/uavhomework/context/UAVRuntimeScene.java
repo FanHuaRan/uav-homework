@@ -12,7 +12,7 @@ import java.util.Map;
  **/
 public class UAVRuntimeScene {
     /**
-     * 当前的无人机运行位置和运行状态
+     * 当前场景的无人机运行位置和运行状态，key为ID，value为无人机
      */
     private final Map<String, UAVehicle> uaVehicles;
 
@@ -25,6 +25,8 @@ public class UAVRuntimeScene {
         this.uaVehicles = Collections.unmodifiableMap(uaVehicles);
         this.currentChangeVehicleId = currentChangeVehicleId;
     }
+
+    /************   getters setters ************/
 
     public Map<String, UAVehicle> getUaVehicles() {
         return uaVehicles;
